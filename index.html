@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rima's website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Binary styles */
+        .binary-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .binary {
+            position: absolute;
+            opacity: 0.2;
+            animation: float 15s linear infinite;
+            font-family: monospace;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Monochromatic color classes */
+        .color1 { color: #000000; }
+        .color2 { color: #333333; }
+        .color3 { color: #666666; }
+        .color4 { color: #999999; }
+        .color5 { color: #CCCCCC; }
+        .color6 { color: #FFFFFF; }
+
+        @keyframes float {
+            from {
+                transform: translateY(-50px);
+            }
+            to {
+                transform: translateY(calc(100vh + 50px));
+            }
+        }
+
+        /* Updated cloud-shaped CV button with strobe effect */
+        .rainbow-btn {
+            background: linear-gradient(90deg, 
+                #4285f4,
+                #34a853,
+                #fbbc05,
+                #ea4335,
+                #4285f4
+            );
+            background-size: 200% auto;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 500;
+            text-decoration: none;
+            animation: strobe 3s linear infinite;
+            transition: transform 0.2s;
+            position: relative;
+            /* Cloud shape using border radius */
+            border-radius: 50px;
+            border-top-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .rainbow-btn:hover {
+            transform: scale(1.05);
+            animation: strobe 1s linear infinite;
+        }
+
+        @keyframes strobe {
+            0% {
+                background-position: 0% center;
+                filter: hue-rotate(0deg);
+            }
+            50% {
+                background-position: 100% center;
+                filter: hue-rotate(180deg);
+            }
+            100% {
+                background-position: 0% center;
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        /* Add this to your existing styles */
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 14px; /* Slightly smaller font size */
+            border: 1px solid #dfe1e5;
+            border-radius: 24px;
+            outline: none;
+            white-space: normal; /* Allow text to wrap */
+            height: auto; /* Allow height to adjust to content */
+            min-height: 45px; /* Minimum height */
+            resize: none; /* Prevent resizing */
+        }
+
+        /* Adjust search container width for better text display */
+        .search-container {
+            max-width: 1100px; /* Increased width */
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Add these styles for the search suggestions */
+        .search-box {
+            position: relative;
+            margin: 0 auto;
+            width: 100%;  /* Ensure full width */
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px 24px 0 0;
+            outline: none;
+            height: 45px;
+            padding-left: 50px;
+            padding-right: 150px;
+        }
+
+        /* Logo and search box spacing */
+        .logo {
+            margin-bottom: 20px;  /* Reduced space between logo and search bar */
+        }
+
+        .search-box {
+            position: relative;
+            margin: 0 auto;
+            width: 100%;  /* Ensure full width */
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 50px;
+            font-size: 16px;
+            border: 1px solid #dfe1e5;
+            border-radius: 24px 24px 0 0;
+            outline: none;
+            height: 45px;
+            padding-left: 50px;
+            padding-right: 150px;
+        }
+
+        .search-box .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9aa0a6;  /* Google's exact gray color */
+            font-size: 18px;
+        }
+
+        .search-box .voice-icon {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            background: conic-gradient(
+                from 45deg,
+                #4285f4 45deg,  /* Google Blue */
+                #34a853 45deg 135deg,  /* Google Green */
+                #fbbc05 135deg 225deg,  /* Google Yellow */
+                #ea4335 225deg 315deg,  /* Google Red */
+                #4285f4 315deg  /* Back to Blue */
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .search-box .camera-icon {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+            background: conic-gradient(
+                from 45deg,
+                #4285f4 45deg,  /* Google Blue */
+                #34a853 45deg 135deg,  /* Google Green */
+                #fbbc05 135deg 225deg,  /* Google Yellow */
+                #ea4335 225deg 315deg,  /* Google Red */
+                #4285f4 315deg  /* Back to Blue */
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Search suggestions styles */
+        .suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #dfe1e5;
+            border-top: none;
+            border-radius: 0 0 24px 24px;
+            box-shadow: 0 4px 6px rgba(32,33,36,0.28);
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .suggestion-item {
+            padding: 12px 40px;
+            cursor: default;
+            display: flex;
+            align-items: center;
+            color: #333;
+            min-height: 40px;
+        }
+
+        .suggestion-item i {
+            color: #9aa0a6;
+            margin-right: 10px;
+        }
+
+        .suggestion-item:last-child {
+            border-radius: 0 0 24px 24px;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* When input is focused */
+        .search-box input:focus {
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+            border-color: #dfe1e5;
+        }
+    </style>
+</head>
+<body>
+    <div class="binary-container" id="binary-container">
+        <!-- Binary digits will be added here via JavaScript -->
+    </div>
+
+    <nav>
+        <div class="nav-right">
+            <a href="cv.html" class="rainbow-btn">Curriculum Vitae</a>
+            <a href="mailto:rimlakhi22@gmail.com" class="contact-btn">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="search-container">
+            <div class="logo">
+                <span class="G">R</span><span class="o1">i</span><span class="o2">m</span>
+                <div class="surname">Lakhiri</div>
+            </div>
+            
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" value="Salam ana rima" readonly>
+                <i class="fas fa-microphone voice-icon"></i>
+                <i class="fas fa-camera camera-icon"></i>
+                <div class="suggestions">
+                    <div class="suggestion-item">
+                        <i class="fas fa-search"></i>
+                        Salam ana rima
+                    </div>
+                    <div class="suggestion-item">
+                        <i class="fas fa-search"></i>
+                        Salam ana rima a passionate cloud engineering student
+                    </div>
+                    <div class="suggestion-item">
+                        <i class="fas fa-search"></i>
+                        Salam ana rima building the future of cloud computing
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="search-btn">Portfolio</button>
+                <button class="lucky-btn">I'm Feeling Lucky</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function createBinary() {
+            const container = document.getElementById('binary-container');
+            const digit = Math.random() > 0.5 ? '1' : '0';
+            const binary = document.createElement('div');
+            
+            const colorNum = Math.floor(Math.random() * 6) + 1;
+            binary.className = `binary color${colorNum}`;
+            
+            binary.textContent = digit;
+            binary.style.left = Math.random() * 100 + 'vw';
+            binary.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            
+            container.appendChild(binary);
+            
+            setTimeout(() => {
+                binary.remove();
+            }, 20000);
+        }
+
+        setInterval(createBinary, 200);
+
+        for(let i = 0; i < 50; i++) {
+            createBinary();
+        }
+    </script>
+</body>
+</html> 
